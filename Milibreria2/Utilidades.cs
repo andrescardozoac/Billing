@@ -14,7 +14,8 @@ namespace Milibreria2
 
         public static DataSet Ejecutar(string cmd) {
 
-            SqlConnection con = new SqlConnection("Data Source=ANDRESCARDOZO\SQLEXPRESS;Initial Catalog=Administracion;Persist Security Info=True;User ID=sa;Password=Saadmin1"); //conexion a la BD
+            string server = "";
+            SqlConnection con = new SqlConnection("Data Source=ANDRESCARDOZO\\SQLEXPRESS;Initial Catalog=Administracion;Persist Security Info=True;User ID=sa;Password=Saadmin1"); //conexion a la BD
             con.Open(); // Abre la conexion a la BD
             DataSet DS = new DataSet(); //Para almacenar lo que quiero consultar (Un Dataset es Como un carro de compras, se parece mucho a una matriz)
             SqlDataAdapter DP = new SqlDataAdapter(cmd, con); //para adaptar los datos de la consulta al dataset

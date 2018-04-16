@@ -32,7 +32,7 @@ namespace Facturacion
             lblAdmin.Text = ds.Tables[0].Rows[0]["account"].ToString().Trim();
             lblUsAdmin.Text = ds.Tables[0].Rows[0]["nom_usu"].ToString().Trim();
             lblCodigo.Text = ds.Tables[0].Rows[0]["id_usuario"].ToString().Trim();
-            pictureBox1.Image = Image.FromFile(ds.Tables[0].Rows[0]["foto"].ToString().Trim());
+        //    pictureBox1.Image = Image.FromFile(ds.Tables[0].Rows[0]["foto"].ToString().Trim());
 
 
 
