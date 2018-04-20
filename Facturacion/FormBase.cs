@@ -28,7 +28,7 @@ namespace Facturacion
 
         private void FormBase_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         public virtual void Eliminar() {

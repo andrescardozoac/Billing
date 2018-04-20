@@ -18,6 +18,8 @@ namespace Facturacion
         public VentanaLogin()
         {
             InitializeComponent();
+         
+
         }
 
 
@@ -66,39 +68,24 @@ namespace Facturacion
 
                 // MessageBox.Show("Error : "+error.Message);
                 
-                MessageBox.Show("Usuario o contraseña incorrecta: "+ error.Message);
+                MessageBox.Show("Usuario o contraseña incorrecta");
             }
 
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void VentanaLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
+
+       
+
         private void VentanaLogin_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-//int t;
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+            this.txtCuenta.Focus();
 
         }
     }

@@ -42,7 +42,6 @@
             // 
             this.btnSalir.Location = new System.Drawing.Point(197, 187);
             this.btnSalir.Size = new System.Drawing.Size(143, 23);
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnIniciar
             // 
@@ -112,6 +111,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnIniciar);
+            this.MaximizeBox = false;
             this.Name = "VentanaLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio de Sesion";
