@@ -44,16 +44,30 @@ namespace Facturacion
 
                    if (Convert.ToBoolean(ds.Tables[0].Rows[0]["status_admin"]) == true)
                     {
-                        VentanaAdmin vta = new VentanaAdmin();
+                        //  VentanaAdmin vta = new VentanaAdmin();
+                        ContenedorPrincipal cp = new ContenedorPrincipal();
                         this.Hide();
-                        vta.Show();
+                        cp.Show();
+
+                        Facturacion fac = new Facturacion();
+                        fac.MdiParent = cp;
+                        fac.Show();
+                        fac.MaximizeBox = true;
+                        //    vta.Show();
                     }
                     else
                     {
 
-                        VentanaUser vtu = new VentanaUser();
+                        //    VentanaUser vtu = new VentanaUser();
+                        //      this.Hide();
+                        //      vtu.Show();
+                        ContenedorPrincipal cp = new ContenedorPrincipal();
                         this.Hide();
-                        vtu.Show();
+                        cp.Show();
+
+                        Facturacion fac = new Facturacion();
+                        fac.MdiParent = this;
+                        fac.Show();
 
                     }
 
