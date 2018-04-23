@@ -226,7 +226,7 @@ namespace Facturacion
                     string cadena = string.Format("Execute ActualizaFacturas '{0}'", txtCodigo.Text.Trim());
                     DataSet ds = Utilidades.Ejecutar(cadena);
 
-                    string numFact = ds.Tables[0].Rows[0]["Num_Fac"].ToString().Trim();
+                    string numFact = ds.Tables[0].Rows[0]["NumFac"].ToString().Trim();
 
 
                     foreach (DataGridViewRow fila in dataGridView1.Rows) {
@@ -236,7 +236,7 @@ namespace Facturacion
 
                     }
 
-                    cadena = "Execute DatosFacturas " + numFact;
+                    cadena = "Execute DatosFactura " + numFact;
                     ds = Utilidades.Ejecutar(cadena);
 
                     //Ventana reporte

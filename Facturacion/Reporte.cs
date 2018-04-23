@@ -19,9 +19,8 @@ namespace Facturacion
 
         private void Reporte_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'DataSet1.DatosFacturas' Puede moverla o quitarla según sea necesario.
-      //      this.DatosFacturasTableAdapter.Fill(this.DataSet1.DatosFacturas);
-
+            // TODO: This line of code loads data into the 'DataSet1.DatosFactura' table. You can move, or remove it, as needed.
+            this.DatosFacturaTableAdapter.Fill(this.DataSet1.DatosFactura,1);
             this.reportViewer1.RefreshReport();
         }
     }
