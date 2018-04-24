@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>car.ico</ApplicationIcon>
+    <ApplicationIcon>images\car.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AnalysisServices.AppLocal, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -245,9 +245,13 @@
       <Name>Milibreria2</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="car.ico" />
+    <Folder Include="CONTROLER\" />
+    <Folder Include="MODEL\" />
+    <Folder Include="VIEW\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\car.ico" />
     <None Include="images\admin.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

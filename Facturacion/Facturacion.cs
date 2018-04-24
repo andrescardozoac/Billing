@@ -16,6 +16,7 @@ namespace Facturacion
         public Facturacion()
         {
             InitializeComponent();
+           
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -30,6 +31,8 @@ namespace Facturacion
             DataSet ds = Utilidades.Ejecutar(cmd);
 
             lblAtiende.Text = ds.Tables[0].Rows[0]["nom_usu"].ToString().Trim();
+
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

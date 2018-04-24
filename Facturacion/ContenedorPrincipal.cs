@@ -17,6 +17,11 @@ namespace Facturacion
         public ContenedorPrincipal()
         {
             InitializeComponent();
+            Facturacion fac = new Facturacion();
+            fac.MdiParent =this;
+            fac.Show();
+            fac.WindowState = this.WindowState;
+
         }
 
         private void ShowNewForm(object sender, EventArgs e)

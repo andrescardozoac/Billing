@@ -42,6 +42,8 @@
             // 
             this.btnSalir.Location = new System.Drawing.Point(197, 187);
             this.btnSalir.Size = new System.Drawing.Size(143, 23);
+            this.btnSalir.TabIndex = 3;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnIniciar
             // 
@@ -89,6 +91,7 @@
             this.txtCuenta.Name = "txtCuenta";
             this.txtCuenta.Size = new System.Drawing.Size(144, 20);
             this.txtCuenta.TabIndex = 0;
+            this.txtCuenta.TextChanged += new System.EventHandler(this.txtCuenta_TextChanged);
             // 
             // txtPass
             // 
