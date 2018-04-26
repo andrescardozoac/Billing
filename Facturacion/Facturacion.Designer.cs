@@ -222,6 +222,7 @@
             this.txtCodpro.SoloNumeros = false;
             this.txtCodpro.TabIndex = 2;
             this.txtCodpro.Validar = true;
+            this.txtCodpro.Leave += new System.EventHandler(this.txtCodpro_Leave);
             // 
             // txtCantPro
             // 
@@ -231,6 +232,7 @@
             this.txtCantPro.SoloNumeros = false;
             this.txtCantPro.TabIndex = 5;
             this.txtCantPro.Validar = true;
+            this.txtCantPro.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCantPro_KeyUp);
             // 
             // dataGridView1
             // 
@@ -306,6 +308,7 @@
             this.txtCodigo.SoloNumeros = false;
             this.txtCodigo.TabIndex = 0;
             this.txtCodigo.Validar = true;
+            this.txtCodigo.Leave += new System.EventHandler(this.txtCodigo_Leave);
             // 
             // txtCliente
             // 

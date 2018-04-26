@@ -30,7 +30,7 @@ namespace Facturacion
             string cmd = "Select * from Usuarios where id_usuario = " + VentanaLogin.codigo;
             DataSet ds = Utilidades.Ejecutar(cmd);
 
-            lblAtiende.Text = ds.Tables[0].Rows[0]["nom_usu"].ToString().Trim();
+            lblAtiende.Text = ds.Tables[0].Rows[0]["nom_usu"].ToString().Trim().ToUpper();
 
 
         }
@@ -38,29 +38,7 @@ namespace Facturacion
         private void btnBuscar_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtCodigo.Text.Trim()) == false) {
-
-
-                try
-                {
-
-                    string cmd = string.Format("Select * from cliente where id_clientes = '{0}'", txtCodigo.Text.Trim());
-                    DataSet ds = Utilidades.Ejecutar(cmd);
-
-                    txtCliente.Text = ds.Tables[0].Rows[0]["nom_cli"].ToString().Trim();
-
-                    txtCodpro.Focus();
-
-
-                }
-                catch (Exception error) {
-
-                    MessageBox.Show("Ha Ocurrido un Error : " + error.Message);
-                }
-
-
-            }
-
+            this.EncontrarCliente();
 
         }
 
@@ -69,92 +47,7 @@ namespace Facturacion
 
         private void btnColocar_Click(object sender, EventArgs e)
         {
-            if (Utilidades.ValidaFormulario(this, errorProvider1) == false)
-            {
-
-                bool existe = false;
-                int num_fila = 0;
-
-
-                if (cont_fila == 0)
-                {
-
-                    dataGridView1.Rows.Add(txtCodpro.Text, txtDescPro.Text, txtPrePro.Text, txtCantPro.Text);
-
-                    double valor = Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[3].Value);
-
-                    dataGridView1.Rows[cont_fila].Cells[4].Value = valor;
-
-                    cont_fila++;
-
-                }
-                else
-                {
-
-                    foreach (DataGridViewRow fila in dataGridView1.Rows)
-                    {
-
-                        if (fila.Cells[0].Value.ToString() == txtCodpro.Text)
-                        {
-
-                            existe = true;
-                            num_fila = fila.Index;
-                        }
-
-
-                    }
-                    if (existe == true)
-                    {
-
-
-                        dataGridView1.Rows[num_fila].Cells[3].Value = (Convert.ToDouble(txtCantPro.Text) + Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value)).ToString();
-                        double valor = Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value);
-
-                        dataGridView1.Rows[num_fila].Cells[4].Value = valor;
-                    }
-                    else
-                    {
-
-                        dataGridView1.Rows.Add(txtCodpro.Text, txtDescPro.Text, txtPrePro.Text, txtCantPro.Text);
-
-                        double valor = Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[3].Value);
-
-                        dataGridView1.Rows[cont_fila].Cells[4].Value = valor;
-                        cont_fila++;
-
-                    }
-
-
-                }
-
-                total = 0;
-
-                foreach (DataGridViewRow fila in dataGridView1.Rows)
-                {
-
-                    total += Convert.ToDouble(fila.Cells[4].Value);
-
-
-                }
-
-                lblTotal.Text = "$" + total.ToString();
-            }
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-            if (cont_fila > 0) {
-
-
-                total = total - Convert.ToDouble(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value);
-                lblTotal.Text = total.ToString();
-
-                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
-
-                cont_fila--;
-
-            } 
+            this.Colocar();
 
         }
 
@@ -268,6 +161,194 @@ namespace Facturacion
 
 
 
+            }
+        }
+
+        private void txtCodigo_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+       
+
+        }
+
+
+        private void EncontrarCliente() {
+
+
+            
+            if (!string.IsNullOrEmpty(txtCodigo.Text.Trim()))
+            {
+
+
+                try
+                {
+
+                    string cmd = string.Format("Select * from cliente where id_clientes = '{0}'", txtCodigo.Text.Trim());
+                    DataSet ds = Utilidades.Ejecutar(cmd);
+
+                    txtCliente.Text = ds.Tables[0].Rows[0]["nom_cli"].ToString().Trim();
+
+                    txtCodpro.Focus();
+
+
+                }
+                catch (Exception error)
+                {
+                    
+                    MessageBox.Show("CLIENTE NO EXISTE");
+                }
+
+
+            }
+
+
+        }
+
+
+        private void txtCodigo_Leave(object sender, EventArgs e)
+        {
+            this.EncontrarCliente();
+        }
+
+
+        private void EncontrarProducto()
+        {
+
+            if (!string.IsNullOrEmpty(txtCodpro.Text.Trim()))
+            {
+                try
+                {
+
+                    string cmd = string.Format("Select * from Articulo where id_pro = '{0}'", txtCodpro.Text.Trim());
+                    DataSet ds = Utilidades.Ejecutar(cmd);
+
+                    txtDescPro.Text = ds.Tables[0].Rows[0]["nom_pro"].ToString().Trim();
+                    txtPrePro.Text = ds.Tables[0].Rows[0]["precio"].ToString().Trim();
+                    txtCantPro.Focus();
+
+
+                }
+                catch (Exception error)
+                {
+
+                    MessageBox.Show("PRODUCTO NO EXISTE");
+                    txtCodpro.Text = null;
+                    txtCodpro.Focus();
+                }
+            }
+
+        }
+
+        private void txtCodpro_Leave(object sender, EventArgs e)
+        {
+            this.EncontrarProducto();
+        }
+
+        private void Colocar()
+        {
+            if (Utilidades.ValidaFormulario(this, errorProvider1) == false)
+            {
+
+                bool existe = false;
+                int num_fila = 0;
+
+
+                if (cont_fila == 0)
+                {
+
+                    dataGridView1.Rows.Add(txtCodpro.Text, txtDescPro.Text, txtPrePro.Text, txtCantPro.Text);
+
+                    double valor = Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[3].Value);
+
+                    dataGridView1.Rows[cont_fila].Cells[4].Value = valor;
+
+                    cont_fila++;
+
+                }
+                else
+                {
+
+                    foreach (DataGridViewRow fila in dataGridView1.Rows)
+                    {
+
+                        if (fila.Cells[0].Value.ToString() == txtCodpro.Text)
+                        {
+
+                            existe = true;
+                            num_fila = fila.Index;
+                        }
+
+
+                    }
+                    if (existe == true)
+                    {
+
+
+                        dataGridView1.Rows[num_fila].Cells[3].Value = (Convert.ToDouble(txtCantPro.Text) + Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value)).ToString();
+                        double valor = Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value);
+
+                        dataGridView1.Rows[num_fila].Cells[4].Value = valor;
+                    }
+                    else
+                    {
+
+                        dataGridView1.Rows.Add(txtCodpro.Text, txtDescPro.Text, txtPrePro.Text, txtCantPro.Text);
+
+                        double valor = Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[cont_fila].Cells[3].Value);
+
+                        dataGridView1.Rows[cont_fila].Cells[4].Value = valor;
+                        cont_fila++;
+
+                    }
+
+
+                }
+
+                total = 0;
+
+                foreach (DataGridViewRow fila in dataGridView1.Rows)
+                {
+
+                    total += Convert.ToDouble(fila.Cells[4].Value);
+
+
+                }
+
+                lblTotal.Text = "$" + total.ToString();
+
+                txtCodpro.Text = null;
+                txtDescPro.Text = null;
+                txtPrePro.Text = null;
+                txtCantPro.Text = null;
+                txtCodpro.Focus();
+            }
+
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            if (cont_fila > 0)
+            {
+
+
+                total = total - Convert.ToDouble(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value);
+                lblTotal.Text = total.ToString();
+
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+
+                cont_fila--;
+
+            }
+
+        }
+
+        private void txtCantPro_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                this.Colocar();
             }
         }
     }
